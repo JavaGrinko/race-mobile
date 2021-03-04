@@ -1,5 +1,6 @@
 import { LEVELS } from "./config/levels";
 import World from "./game/world";
+import DatConfig from "./system/dat.config";
 
 document.addEventListener("deviceready", deviceReady, false);
 
@@ -11,4 +12,5 @@ function deviceReady() {
         height: window.innerHeight * ratio
     }, LEVELS.DEV);
     world.start();
+    new DatConfig(world);
 }

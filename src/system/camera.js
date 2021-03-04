@@ -10,9 +10,9 @@ export default class Camera {
         this.cameraWidth = cameraWidth;
         this.cameraHeight = cameraHeight;
     }
-    update(){
-        this.x = this.player.x - this.startX;
-        this.y = this.height - this.cameraHeight + this.player.y - this.startY;
+    update() {
+        // this.x = this.player.x - this.startX;
+        // this.y = this.player.y - this.startY;
         if (this.x < 0) {
             this.x = 0;
         }

@@ -10,10 +10,10 @@ export default class World {
         this.background;
         this.level;
         this.camera;
-        this.player = { x: 100, y: 100 };
-        setInterval(() => {
-            this.player.y++;
-        }, 10);
+        this.player = { x: 10, y: 10 };
+        // setInterval(() => {
+        //     this.player.y++;
+        // }, 10);
         this.loadLevel(initLevel);
     }
 
@@ -38,8 +38,11 @@ export default class World {
         const { isRunning, canvas, options, background, camera } = this;
         const { width, height } = options;
         if (isRunning) requestAnimationFrame(this.render);
+        canvas.save(); // <---
+        canvas.translate(-camera.x, -camera.y); // <---
         canvas.drawImage(background, 0, 0);
         camera.update();
+        canvas.restore(); // <---
     }
 
     createCanvas({ width, height }) {
