@@ -1,4 +1,5 @@
 import Camera from "../system/camera";
+import Car from "./car";
 
 export default class World {
     constructor(options, initLevel) {
@@ -10,7 +11,14 @@ export default class World {
         this.background;
         this.level;
         this.camera;
-        this.player = { x: 10, y: 10 };
+        this.player = new Car({
+            imageSrc: "images/car-test.png",
+            width: 53,
+            height: 100,
+            speed: 10,
+            x: 50,
+            y: 50
+        });
         // setInterval(() => {
         //     this.player.y++;
         // }, 10);
@@ -35,14 +43,16 @@ export default class World {
     }
 
     render = () => {
-        const { isRunning, canvas, options, background, camera } = this;
+        const { isRunning, canvas, options, 
+                background, camera, player } = this;
         const { width, height } = options;
         if (isRunning) requestAnimationFrame(this.render);
-        canvas.save(); // <---
-        canvas.translate(-camera.x, -camera.y); // <---
+        canvas.save();
+        canvas.translate(-camera.x, -camera.y);
         canvas.drawImage(background, 0, 0);
+        player.render(canvas);
         camera.update();
-        canvas.restore(); // <---
+        canvas.restore();
     }
 
     createCanvas({ width, height }) {
