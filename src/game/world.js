@@ -15,7 +15,8 @@ export default class World {
             imageSrc: "images/car-test.png",
             width: 53,
             height: 100,
-            speed: 10,
+            speed: 0,
+            angle: 180,
             x: 50,
             y: 50
         });
@@ -44,7 +45,7 @@ export default class World {
 
     render = () => {
         const { isRunning, canvas, options, 
-                background, camera, player } = this;
+                background, camera, player, controls } = this;
         const { width, height } = options;
         if (isRunning) requestAnimationFrame(this.render);
         canvas.save();
@@ -53,6 +54,7 @@ export default class World {
         player.render(canvas);
         camera.update();
         canvas.restore();
+        controls(this);
     }
 
     createCanvas({ width, height }) {

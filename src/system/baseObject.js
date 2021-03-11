@@ -241,18 +241,26 @@ export class BaseObject {
     }
 
     turnRight() {
-        this.angle += 1;
+        this.turnRight(1);
+    }
+
+    turnLeft() {
+        this.turnLeft(1);
+    }
+
+    turnRight(deg) {
+        this.angle += deg;
         if (this.checkCollision()) {
-            this.angle -= 1;
+            this.angle -= deg;
         } else {
             this.checkAngleLimits();
         }
     }
 
-    turnLeft() {
-        this.angle -= 1;
+    turnLeft(deg) {
+        this.angle -= deg;
         if (this.checkCollision()) {
-            this.angle += 1;
+            this.angle += deg;
         } else {
             this.checkAngleLimits();
         }
