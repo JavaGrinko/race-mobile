@@ -14,5 +14,6 @@ export default class DatConfig {
         const playerFolder = gui.addFolder("Player props");
         playerFolder.add(player, "x", 0, level.width).listen();
         playerFolder.add(player, "y", 0, level.height).listen();
+        playerFolder.add(player, "speed", 0, player.maxSpeed).listen();
     }
 }

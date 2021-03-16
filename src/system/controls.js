@@ -4,11 +4,10 @@ const keyboard = new THREEx.KeyboardState();
 
 export default function controls(world) {
     if (keyboard.pressed("W")) {
-        world.player.speed++;     
+        world.player.increaseSpeed();     
     } else if (keyboard.pressed("S")) {
-        world.player.speed--;
+        world.player.decreaseSpeed();
     }
-
     if (world.player.speed > 0) {
         turns(world);
     }
