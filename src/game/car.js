@@ -1,12 +1,5 @@
 import { BaseObject } from "../system/baseObject";
-
-export const SFC = {
-    DRY_ASPHALT: 0.5,
-    WET_ASPHALT: 0.35,
-    DRY_DIRT_ROAD: 0.4,
-    WET_DIRT_ROAD: 0.3,
-    ICE: 0.15
-}
+import { SFC } from "./road";
 
 export default class Car extends BaseObject {
     constructor(options) {
