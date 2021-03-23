@@ -8,7 +8,7 @@ export default function controls(world) {
     } else if (keyboard.pressed("S")) {
         world.player.decreaseSpeed();
     }
-    if (world.player.speed > 0) {
+    if (world.player.speed !== 0) {
         turns(world);
     }
 }
