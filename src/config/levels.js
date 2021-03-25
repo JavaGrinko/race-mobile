@@ -18,7 +18,7 @@ export const LEVELS = {
             width: 1580,
             height: 50,
             color: "#ff0000",
-            angle: 30
+            angle: 45
         }],
         roads: [{
             ...ROADS.ICE_ROAD, 

@@ -1,5 +1,6 @@
 import { BaseObject } from "../system/baseObject";
 import { SFC } from "./road";
+import _ from "lodash";
 
 export default class Car extends BaseObject {
     constructor(options) {
@@ -7,6 +8,7 @@ export default class Car extends BaseObject {
         this.acceleration = 1;
         this.maxSpeed = 20;
         this.slidingFrictionCoefficient = SFC.ICE;
+        this.discarding = _.throttle(this.discarding, 1000);
     }
 
     onRender() {
@@ -49,9 +51,21 @@ export default class Car extends BaseObject {
             }
         });
         for (let wall of walls) {
-            if (this.collision(wall)) {
+            if (this.collision(wall)) { 
+                this.discarding();
                 return true;
             }
         }
+    }
+
+    discarding() {
+        console.log("Бабах");
+        let i = setInterval(() => {
+            this.decreaseSpeed();
+            this.turnRight(5);
+        }, 10);
+        setTimeout(() => {
+            clearInterval(i);
+        }, 100);
     }
 }
