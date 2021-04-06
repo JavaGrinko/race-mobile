@@ -1,6 +1,24 @@
 import { ROADS } from "./roads";
 
 export const LEVELS = {
+    DEMO1: {
+        backgroundSrc: 'images/demo1.png',
+        width: 1920,
+        height: 1080,
+        spawn: {
+            x: 766,
+            y: 720,
+            angle: 90
+        },
+        roads: [{
+            ...ROADS.DRY_ASPHALT_ROAD, 
+            x: 469, 
+            y: 665, 
+            width:  875 - 469,
+            height: 802 - 665
+        }],
+        walls: []
+    },
     DEV: {
         backgroundSrc: 'images/track.jpg',
         width: 1061,

@@ -17,8 +17,8 @@ function turns(world) {
     let inverse = false;
     if (world.player.speed < 0) inverse = true;
     if (keyboard.pressed(inverse ? "A" : "D")) {
-        world.player.turnRight(5);
+        world.player.turnRight(3);
     } else if (keyboard.pressed(inverse ? "D" : "A")) {
-        world.player.turnLeft(5);
+        world.player.turnLeft(3);
     }
 }
