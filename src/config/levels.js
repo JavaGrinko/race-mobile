@@ -1,6 +1,50 @@
 import { ROADS } from "./roads";
+import { EventType } from "./events";
 
 export const LEVELS = {
+    TRACK: {
+        backgroundSrc: 'images/bg_misha.png',
+        width: 2048,
+        height: 1024,
+        roads: [],
+        walls: [{
+            color: 'green',
+            width: 46,
+            height: 282,
+            x: 964,
+            y: 693,
+            background: true,
+            actions: [{
+                event: EventType.COLLISION,
+                action: "startRace"
+            }]
+        }, {
+            x: 0,
+            y: -15,
+            width: 2048,
+            height: 15
+        }, {
+            x: -15,
+            y: 0,
+            width: 15,
+            height: 1024
+        }, {
+            x: 2063,
+            y: 0,
+            width: 15,
+            height: 1024
+        }, {
+            x: 0,
+            y: 1024,
+            width: 2048,
+            height: 15
+        }],
+        spawn: {
+            x: 868,
+            y: 822,
+            angle: 90,
+        }
+    },
     DEMO1: {
         backgroundSrc: 'images/demo1.png',
         width: 1920,

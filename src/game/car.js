@@ -72,7 +72,7 @@ export default class Car extends BaseObject {
             if (this.collision(wall)) { 
                 let edge = this.getEdge(wall);
                 this.discarding(edge);
-                camera.shake(1000, 15, this.speed / 3);
+                camera.shake(1000, 15, this.speed / 2);
                 return true;
             }
         }

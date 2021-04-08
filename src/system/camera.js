@@ -39,8 +39,9 @@ export default class Camera {
  
     shake(time, amplitude, force) {
         let j = setInterval(() => {
-            this.x = this.getRandom(this.x, this.x + force);
-            this.y = this.getRandom(this.y, this.y + force);
+            this.x = this.x + this.getRandom(-force, force);
+            this.y = this.y + this.getRandom(-force, force);
+            console.log(this.x, this.y);
         }, amplitude);
         setTimeout(() => {
             clearInterval(j);
