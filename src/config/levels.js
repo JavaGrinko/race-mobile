@@ -14,10 +14,7 @@ export const LEVELS = {
             x: 964,
             y: 693,
             background: true,
-            actions: [{
-                event: EventType.COLLISION,
-                action: "startRace"
-            }]
+            name: "start_line"
         }, {
             x: 0,
             y: -15,

@@ -1,4 +1,5 @@
 import { BaseObject } from "../system/baseObject";
+import { EventType } from "../config/events";
 import { SFC } from "./road";
 import _ from "lodash";
 
@@ -10,6 +11,7 @@ export default class Car extends BaseObject {
         this.rotateSpeed;
         this.slidingFrictionCoefficient = SFC.ICE;
         this.discarding = _.throttle(this.discarding, 1000);
+        this.fireEventCollisionWall = _.throttle(this.fireEventCollisionWall, 1000);
     }
 
     updateRotateSpeed() {
@@ -69,13 +71,24 @@ export default class Car extends BaseObject {
             }
         });
         for (let wall of walls) {
-            if (this.collision(wall)) { 
+            if (this.collision(wall)) {
+                if (wall.background || wall.foreground) {
+                    this.fireEventCollisionWall(wall);
+                    return false;
+                }
                 let edge = this.getEdge(wall);
                 this.discarding(edge);
                 camera.shake(1000, 15, this.speed / 2);
                 return true;
             }
         }
+    }
+
+    fireEventCollisionWall(wall) {
+        this.world.eventBus.fireEvent({
+            type: EventType.COLLISION,
+            name: wall.name
+        });
     }
 
     getEdge(object) {
@@ -109,10 +122,22 @@ export default class Car extends BaseObject {
                     this.decreaseSpeed();
                     this.turnLeft(5);
                     break;
-            } 
+            }
         }, 10);
         setTimeout(() => {
             clearInterval(i);
         }, 100);
+    }
+
+    notify(event) {
+        const { type } = event;
+        if (this.actions) {
+            let actions = this.actions
+                .filter(a => a.event === type)
+                .map(a => ACTIONS[a.action]);                 
+            for (let a of actions) {
+                a(this, event);
+            }
+        }
     }
 }

@@ -28,13 +28,13 @@ export default class World {
 
     createWall(options) {
         const wall = new Wall({ ...options, world: this });
-        this.world.eventBus.subsribe(wall);
+        this.eventBus.subscribe(wall);
         return wall;
     }
 
     createCar(options) {
         const car = new Car({ ...options, world: this });
-        this.world.eventBus.subsribe(car);
+        this.eventBus.subscribe(car);
         return car;
     }
 

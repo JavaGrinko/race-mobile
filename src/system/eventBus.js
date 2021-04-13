@@ -12,6 +12,7 @@ export default class EventBus {
     }
 
     fireEvent(event) {
+        console.log("Новое событие " + event.type, event);
         this.subscribers.forEach(s => s.notify(event));
     }
 }

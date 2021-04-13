@@ -41,7 +41,6 @@ export default class Camera {
         let j = setInterval(() => {
             this.x = this.x + this.getRandom(-force, force);
             this.y = this.y + this.getRandom(-force, force);
-            console.log(this.x, this.y);
         }, amplitude);
         setTimeout(() => {
             clearInterval(j);
