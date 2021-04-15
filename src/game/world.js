@@ -48,6 +48,9 @@ export default class World {
         this.player.x = spawn.x;
         this.player.y = spawn.y;
         this.player.angle = spawn.angle;
+        let checkpointCount = walls
+                    .filter(w => w.name && w.name.includes("checkpoint")).length;
+        this.player.lapCounter.reset(checkpointCount);
         this.createCamera();
     }
 

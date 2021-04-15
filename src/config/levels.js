@@ -8,6 +8,42 @@ export const LEVELS = {
         height: 1024,
         roads: [],
         walls: [{
+            color: 'red',
+            x: 263,
+            y: 771,
+            angle: -70,
+            width: 262,
+            height: 46,
+            background: true,
+            name: "checkpoint_3"
+        },{
+            color: 'red',
+            x: 194,
+            y: 151,
+            angle: 30,
+            width: 322,
+            height: 46,
+            background: true,
+            name: "checkpoint_2"
+        },{
+            color: 'red',
+            x: 1582,
+            y: 266,
+            angle: -10,
+            width: 282,
+            height: 46,
+            background: true,
+            name: "checkpoint_1"
+        }, {
+            color: 'red',
+            x: 1652,
+            y: 645,
+            angle: -45,
+            width: 46,
+            height: 282,
+            background: true,
+            name: "checkpoint_0"
+        }, {
             color: 'green',
             width: 46,
             height: 282,

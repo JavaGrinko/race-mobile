@@ -2,16 +2,19 @@ import { BaseObject } from "../system/baseObject";
 import { EventType } from "../config/events";
 import { SFC } from "./road";
 import _ from "lodash";
+import LapCounter from "./lapcounter";
 
 export default class Car extends BaseObject {
     constructor(options) {
         super(options);
+        this.lapCounter = new LapCounter();
+        this.world.eventBus.subscribe(this.lapCounter);
         this.acceleration = 0.1;
         this.maxSpeed = 5;
         this.rotateSpeed;
         this.slidingFrictionCoefficient = SFC.ICE;
         this.discarding = _.throttle(this.discarding, 1000);
-        this.fireEventCollisionWall = _.throttle(this.fireEventCollisionWall, 1000);
+        this.fireEventCollisionWall = _.throttle(this.fireEventCollisionWall, 1000, {'trailing': false});
     }
 
     updateRotateSpeed() {

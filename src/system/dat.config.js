@@ -18,5 +18,7 @@ export default class DatConfig {
         playerFolder.add(player, "rotateSpeed", 0, player.maxSpeed).listen();
         playerFolder.add(player, "slidingFrictionCoefficient").listen();
         playerFolder.add(player, "angle").listen();
+        playerFolder.add(player.lapCounter, "currentCheckpoint").listen();
+        playerFolder.add(player.lapCounter, "checkpointCount").listen();
     }
 }
