@@ -40,7 +40,7 @@ export default class World {
 
     loadLevel(level) {
         this.level = level;
-        const { backgroundSrc, roads, walls, spawn } = level;
+        const { backgroundSrc, roads, walls, spawn, lapsCount } = level;
         this.background = new Image();
         this.background.src = backgroundSrc;
         this.roads = roads.map(road => this.createRoad(road));
@@ -50,7 +50,7 @@ export default class World {
         this.player.angle = spawn.angle;
         let checkpointCount = walls
                     .filter(w => w.name && w.name.includes("checkpoint")).length;
-        this.player.lapCounter.reset(checkpointCount);
+        this.player.lapCounter.reset(checkpointCount, lapsCount);
         this.createCamera();
     }
 

@@ -2,47 +2,64 @@ import { EventType } from "../config/events";
 
 export default class LapCounter {
     constructor() {
-        this.lapCount = 0;
-        this.currentCheckpoint = -1;
+        this.currentCheckpoint;
+        this.lapsCount;
+        this.currentLap;
         this.checkpointCount;
-        this.startTime;
-        this.endTime;
+        this.times = [];
     }
 
     notify(event) {
         const { type, name } = event;
-        const { startTime, currentCheckpoint, checkpointCount } = this;
         if (type === EventType.COLLISION && name) {
             if (name === "start_line") {
-                if (!startTime) {
-                    this.start();
-                } else if (currentCheckpoint === checkpointCount - 1) {
-                    this.end();
-                }
+                this.startLinePassed();
             } else if (name.includes("checkpoint")) {
-                let lapNum = Number.parseInt(name.split("_")[1]);
-                if (currentCheckpoint + 1 === lapNum) {
-                    this.currentCheckpoint = lapNum;
-                }
+                this.checkpointPassed(name);
             }
         }
     }
 
-    reset(checkpointCount) {
-        this.lapCount = 0;
+    startLinePassed() {
+        if (!this.times[this.currentLap]) {
+            this.start();
+        } else if (this.currentCheckpoint === this.checkpointCount - 1) {
+            this.end();
+        }
+    }
+
+    checkpointPassed(name) {
+        let lapNum = Number.parseInt(name.split("_")[1]);
+        if (this.currentCheckpoint + 1 === lapNum) {
+            this.currentCheckpoint = lapNum;
+        }
+    }
+
+    reset(checkpointCount, lapsCount) {
         this.currentCheckpoint = -1;
         this.checkpointCount = checkpointCount;
-        this.startTime = undefined;
-        this.endTime = undefined;
+        this.currentLap = 0;
+        this.lapsCount = lapsCount;
+        this.times = [];
     }
 
     start() {
-        this.startTime = new Date();
+        this.times[this.currentLap] = {
+            startTime: new Date(),
+            endTime: undefined
+        }
     }
 
     end() {
-        this.endTime = new Date();
-        let lapTime = Math.round((this.endTime - this.startTime ) / 1000);
+        this.times[this.currentLap].endTime = new Date();
+        const {startTime, endTime} = this.times[this.currentLap];
+        let lapTime = Math.round((endTime - startTime ) / 1000);
         console.log("Время круга: " + lapTime + " сек");
+        if (this.currentLap + 1 === this.lapsCount) {
+            console.log("Гонка закончена");
+        }
+        this.currentCheckpoint = -1;
+        this.currentLap++;
+        console.log(this.lapsCount, this.currentLap);
     }
 }

@@ -6,6 +6,7 @@ export const LEVELS = {
         backgroundSrc: 'images/bg_misha.png',
         width: 2048,
         height: 1024,
+        lapsCount: 2,
         roads: [],
         walls: [{
             color: 'red',
@@ -82,6 +83,7 @@ export const LEVELS = {
         backgroundSrc: 'images/demo1.png',
         width: 1920,
         height: 1080,
+        lapsCount: 2,
         spawn: {
             x: 766,
             y: 720,
@@ -120,6 +122,7 @@ export const LEVELS = {
         backgroundSrc: 'images/track.jpg',
         width: 1061,
         height: 1500,
+        lapsCount: 2,
         roads: [],
         walls: []
     },
@@ -127,6 +130,7 @@ export const LEVELS = {
         backgroundSrc: 'images/background.png',
         width: 1600,
         height: 1000,
+        lapsCount: 2,
         walls: [{
             x: 10,
             y: 10,
