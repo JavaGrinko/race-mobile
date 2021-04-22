@@ -197,7 +197,7 @@ export class BaseObject {
             const { x, y, w, h, image } = frame;
             offsetX = offsetX ? offsetX : 0;
             offsetY = offsetY ? offsetY : 0;
-            canvas.drawImage(image, x + offsetX, y + offsetY, width, height, -hw, -hh, width, height);
+            canvas.drawImage(image, x + offsetX, y + offsetY, w, h, -hw, -hh, width, height);
         } else if (this.image) {
             let { offsetX, offsetY, image, width, height } = this;
             offsetX = offsetX ? offsetX : 0;

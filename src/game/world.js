@@ -1,3 +1,4 @@
+import { CARS } from "../config/cars";
 import Camera from "../system/camera";
 import EventBus from "../system/eventBus";
 import Car from "./car";
@@ -15,12 +16,7 @@ export default class World {
         this.background;
         this.level;
         this.camera;
-        this.player = this.createCar({
-            imageSrc: "images/car-test.png",
-            width: 53,
-            height: 100,
-            speed: 0
-        });
+        this.player = this.createCar(CARS.BUGATTI);
         this.roads = [];
         this.walls = [];
         this.loadLevel(initLevel);

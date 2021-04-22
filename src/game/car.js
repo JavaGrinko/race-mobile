@@ -10,7 +10,7 @@ export default class Car extends BaseObject {
         this.lapCounter = new LapCounter();
         this.world.eventBus.subscribe(this.lapCounter);
         this.acceleration = 0.1;
-        this.maxSpeed = 5;
+        this.speed = 0;
         this.rotateSpeed;
         this.slidingFrictionCoefficient = SFC.ICE;
         this.discarding = _.throttle(this.discarding, 1000);

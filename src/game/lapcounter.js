@@ -21,6 +21,7 @@ export default class LapCounter {
     }
 
     startLinePassed() {
+        console.log(this.times);
         if (!this.times[this.currentLap]) {
             this.start();
         } else if (this.currentCheckpoint === this.checkpointCount - 1) {
@@ -60,6 +61,7 @@ export default class LapCounter {
         }
         this.currentCheckpoint = -1;
         this.currentLap++;
+        this.start();
         console.log(this.lapsCount, this.currentLap);
     }
 }
