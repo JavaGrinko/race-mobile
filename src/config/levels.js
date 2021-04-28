@@ -1,5 +1,6 @@
 import { ROADS } from "./roads";
 import { EventType } from "./events";
+import { CARS } from "./cars";
 
 export const LEVELS = {
     TRACK: {
@@ -7,6 +8,9 @@ export const LEVELS = {
         width: 2048,
         height: 1024,
         lapsCount: 2,
+        bots: [
+            CARS.BUGATTI,
+        ],
         roads: [],
         walls: [{
             color: 'red',
@@ -75,7 +79,7 @@ export const LEVELS = {
         }],
         spawn: {
             x: 868,
-            y: 822,
+            y: 700,
             angle: 90,
         }
     },

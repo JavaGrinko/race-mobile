@@ -11,6 +11,7 @@ export default class Car extends BaseObject {
         this.world.eventBus.subscribe(this.lapCounter);
         this.acceleration = 0.1;
         this.speed = 0;
+        this.headCrab;
         this.rotateSpeed;
         this.slidingFrictionCoefficient = SFC.ICE;
         this.discarding = _.throttle(this.discarding, 1000);
@@ -34,6 +35,7 @@ export default class Car extends BaseObject {
     onRender() {
         this.moveUp(this.speed);
         this.braking();
+        this.headCrab && this.headCrab.control();
     }
 
     increaseSpeed() {
@@ -67,7 +69,13 @@ export default class Car extends BaseObject {
     }
 
     checkCollision() {
-        const { roads, walls, camera } = this.world;
+        const { roads, walls, camera, bots } = this.world;
+        for (let bot of bots) {
+            if (this != bot && this.collision(bot)) {
+                camera.shake(1000, 15, this.speed / 2);
+                return true;
+            }
+        }
         roads.forEach(road => {
             if (this.collision(road)) {
                 this.slidingFrictionCoefficient = road.sfc;
