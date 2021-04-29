@@ -217,7 +217,7 @@ export class BaseObject {
         this.renderHints(canvas);
     }
 
-    renderPoint(x, y, color) {
+    renderPoint(x, y, color, canvas) {
         canvas.fillStyle = color;
         canvas.beginPath();
         canvas.arc(x, y, 5, 0, Math.PI * 2, true);
@@ -377,6 +377,13 @@ export class BaseObject {
         let r3 = this.isPointInObject(object.getLeftTopPoint());
         let r4 = this.isPointInObject(object.getRightTopPoint());
         return r1 || r2 || r3 || r4;
+    }
+
+    getCenterPoint() {
+        let hw = this.width / 2;
+        let hh = this.height / 2;
+        let point = this.rotatePoint(hw, hh, this.angle);
+        return {x: point.x + this.x, y: point.y + this.y}
     }
 
     getRightTopPoint() {

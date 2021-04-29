@@ -49,11 +49,11 @@ export default class World {
         let checkpointCount = walls
                     .filter(w => w.name && w.name.includes("checkpoint")).length;
         this.player.lapCounter.reset(checkpointCount, lapsCount);
-        this.createBots(bots, spawn);
+        this.createBots(bots, spawn, checkpointCount, lapsCount);
         this.createCamera();
     }
 
-    createBots(bots, spawn) {
+    createBots(bots, spawn, checkpointCount, lapsCount) {
         let { x, y, angle } = spawn;
         bots && bots.forEach(bot => {
             let car = this.createCar(bot);
@@ -61,6 +61,7 @@ export default class World {
             car.y = y + car.height + 30;
             car.angle = angle;
             car.headCrab = new HeadCrab(car);
+            car.lapCounter.reset(checkpointCount, lapsCount);
             this.bots.push(car);
         });
     }
