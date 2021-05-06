@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
+
 import Sprite from './sprite';
 
 export const UP = 'WALK_UP';
@@ -9,6 +11,7 @@ export const STAY = 'STAY';
 
 export class BaseObject {
     constructor(options) {
+        this.uuid = uuidv4();
         this.x;
         this.y;
         this.speed;

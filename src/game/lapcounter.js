@@ -1,17 +1,18 @@
 import { EventType } from "../config/events";
 
 export default class LapCounter {
-    constructor() {
+    constructor(car) {
         this.currentCheckpoint;
         this.lapsCount;
         this.currentLap;
         this.checkpointCount;
         this.times = [];
+        this.car = car;
     }
 
     notify(event) {
-        const { type, name } = event;
-        if (type === EventType.COLLISION && name) {
+        const { type, name, carId } = event;
+        if (type === EventType.COLLISION && name && this.car.uuid === carId) {
             if (name === "start_line") {
                 this.startLinePassed();
             } else if (name.includes("checkpoint")) {

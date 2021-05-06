@@ -7,7 +7,7 @@ import LapCounter from "./lapcounter";
 export default class Car extends BaseObject {
     constructor(options) {
         super(options);
-        this.lapCounter = new LapCounter();
+        this.lapCounter = new LapCounter(this);
         this.world.eventBus.subscribe(this.lapCounter);
         this.acceleration = 0.1;
         this.speed = 0;
@@ -98,7 +98,8 @@ export default class Car extends BaseObject {
     fireEventCollisionWall(wall) {
         this.world.eventBus.fireEvent({
             type: EventType.COLLISION,
-            name: wall.name
+            name: wall.name,
+            carId: this.uuid
         });
     }
 
