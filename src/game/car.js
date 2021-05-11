@@ -32,10 +32,10 @@ export default class Car extends BaseObject {
         super.turnRight(this.rotateSpeed);
     }
 
-    onRender() {
+    onRender(canvas) {
         this.moveUp(this.speed);
         this.braking();
-        this.headCrab && this.headCrab.control();
+        this.headCrab && this.headCrab.control(canvas);
     }
 
     increaseSpeed() {
@@ -115,7 +115,6 @@ export default class Car extends BaseObject {
     }
 
     discarding(edge) {
-        console.log("Бабах");
         let i = setInterval(() => {
             switch (edge) {
                 case "right-bottom":

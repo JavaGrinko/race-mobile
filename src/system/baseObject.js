@@ -218,6 +218,10 @@ export class BaseObject {
             this.renderHealthBar(canvas);
         }
         this.renderHints(canvas);
+        let center = this.getCenterPoint();
+        this.renderPoint(center.x, center.y, "red", canvas);
+        let rb = this.getRightBottomPoint();
+        this.renderPoint(rb.x, rb.y, "red", canvas);
     }
 
     renderPoint(x, y, color, canvas) {
@@ -385,8 +389,7 @@ export class BaseObject {
     getCenterPoint() {
         let hw = this.width / 2;
         let hh = this.height / 2;
-        let point = this.rotatePoint(hw, hh, this.angle);
-        return {x: point.x + this.x, y: point.y + this.y}
+        return {x: hw + this.x, y: hh + this.y}
     }
 
     getRightTopPoint() {
