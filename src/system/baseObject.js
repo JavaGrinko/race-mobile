@@ -218,10 +218,6 @@ export class BaseObject {
             this.renderHealthBar(canvas);
         }
         this.renderHints(canvas);
-        let center = this.getCenterPoint();
-        this.renderPoint(center.x, center.y, "red", canvas);
-        let rb = this.getRightBottomPoint();
-        this.renderPoint(rb.x, rb.y, "red", canvas);
     }
 
     renderPoint(x, y, color, canvas) {
@@ -280,6 +276,25 @@ export class BaseObject {
             this.angle += 360;
         }
     }
+
+    getAngleToPoint(x, y) {
+        let center = this.getCenterPoint();
+        let a = Math.abs(center.y - y);
+        let c = Math.abs(center.x - x);
+        let b = Math.sqrt(a * a + c * c);
+        let sinA = c * Math.sin(Math.PI / 2) / b;
+        let alpha = Math.asin(sinA) * 57.2958;
+        if (x < center.x && y < center.y) {
+            alpha = 360 - alpha;
+        }
+        if (x < center.x && y > center.y) {
+            alpha += 180;
+        }
+        if (x > center.x && y > center.y) {
+            alpha = 180 - alpha;
+        }
+        return alpha;
+    } 
 
     getDistance(object) {
         const thisX = this.x + this.width / 2;

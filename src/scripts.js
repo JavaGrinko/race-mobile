@@ -15,6 +15,7 @@ function deviceReady() {
     world.controls = controls;
     world.start();
     new DatConfig(world);
+    window.world = world;
 
     document.addEventListener("click", (event) => {
         let mouseX = event.offsetX * ratio + world.camera.x;

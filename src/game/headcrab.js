@@ -1,6 +1,17 @@
+import _ from "lodash";
+
 export default class HeadCrab {
     constructor(car) {
         this.car = car;
+        this.reactionDelay = 200;
+    }
+
+    turnLeft() {
+        _.delay(() => this.car.turnLeft(), this.reactionDelay);
+    }
+
+    turnRight() {
+        _.delay(() => this.car.turnRight(), this.reactionDelay);
     }
 
     renderTargetLine(canvas, nextPoint) {
@@ -13,24 +24,27 @@ export default class HeadCrab {
 
     control(canvas) {
         const { car } = this;
-        let center = car.getCenterPoint();
         let nextPoint = this.getNextPoint();
         this.renderTargetLine(canvas, nextPoint);
-        let a = Math.abs(center.y - nextPoint.y);
-        let c = Math.abs(center.x - nextPoint.x);
-        let b = Math.sqrt(a * a + c * c);
-        let sinA = c * Math.sin(Math.PI / 2) / b;
-        let alpha = Math.asin(sinA) * 57.2958;
-        if (nextPoint.x < center.x && nextPoint.y < center.y) {
-            alpha = 360 - alpha;
+        let needAngle = car.getAngleToPoint(nextPoint.x, nextPoint.y);
+        car.angle = car.angle < 0 ? 360 + car.angle : car.angle;
+        if (needAngle > car.angle) {
+            let needRight = needAngle - car.angle;
+            let needLeft = 360 - needAngle + car.angle;
+            if (needRight > needLeft) {
+                this.turnLeft();
+            } else {
+                this.turnRight();
+            }
+        } else {
+            let needLeft = car.angle - needAngle;
+            let needRight = 360 - car.angle + needAngle;
+            if (needRight > needLeft) {
+                this.turnLeft();
+            } else {    
+                this.turnRight();
+            }
         }
-        if (nextPoint.x < center.x && nextPoint.y > center.y) {
-            alpha += 180;
-        }
-        if (nextPoint.x > center.x && nextPoint.y > center.y) {
-            alpha = 180 - alpha;
-        }
-        car.angle = alpha;
         car.increaseSpeed();
     }
 
