@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --host 0.0.0.0",
     "apk": "docker run -it -v \"$(pwd)\":/workspace -w /workspace javagrinko/docker-cordova bash ./build.sh",
     "clean": "rm -rf build/ www/ project/"
   },

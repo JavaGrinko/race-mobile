@@ -69,10 +69,12 @@ export default class Car extends BaseObject {
     }
 
     checkCollision() {
-        const { roads, walls, camera, bots } = this.world;
+        const { roads, walls, camera, bots, player } = this.world;
         for (let bot of bots) {
             if (this != bot && this.collision(bot)) {
-                camera.shake(1000, 15, this.speed / 2);
+                if (this === player) {
+                    camera.shake(1000, 15, this.speed / 2);
+                }
                 return true;
             }
         }
@@ -89,7 +91,9 @@ export default class Car extends BaseObject {
                 }
                 let edge = this.getEdge(wall);
                 this.discarding(edge);
-                camera.shake(1000, 15, this.speed / 2);
+                if (this === player) {
+                    camera.shake(1000, 15, this.speed / 2);
+                }
                 return true;
             }
         }

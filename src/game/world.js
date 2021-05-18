@@ -55,10 +55,10 @@ export default class World {
 
     createBots(bots, spawn, checkpointCount, lapsCount) {
         let { x, y, angle } = spawn;
-        bots && bots.forEach(bot => {
+        bots && bots.forEach((bot, index) => {
             let car = this.createCar(bot);
-            car.x = x;
-            car.y = y + car.height + 30;
+            car.x = x - Math.ceil(index / 2) * (car.width * 2);
+            car.y = index % 2 === 0 ? y + car.height + 30 : y;
             car.angle = angle;
             car.headCrab = new HeadCrab(car);
             car.lapCounter.reset(checkpointCount, lapsCount);

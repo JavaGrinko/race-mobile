@@ -3,15 +3,15 @@ import _ from "lodash";
 export default class HeadCrab {
     constructor(car) {
         this.car = car;
-        this.reactionDelay = 200;
+        this.reactionDelay = () => car.randomInt(100, 200);
     }
 
     turnLeft() {
-        _.delay(() => this.car.turnLeft(), this.reactionDelay);
+        _.delay(() => this.car.turnLeft(), this.reactionDelay());
     }
 
     turnRight() {
-        _.delay(() => this.car.turnRight(), this.reactionDelay);
+        _.delay(() => this.car.turnRight(), this.reactionDelay());
     }
 
     renderTargetLine(canvas, nextPoint) {

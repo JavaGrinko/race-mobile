@@ -10,6 +10,7 @@ export const LEVELS = {
         lapsCount: 2,
         bots: [
             CARS.BUGATTI,
+            CARS.BUGATTI,
         ],
         roads: [],
         walls: [{

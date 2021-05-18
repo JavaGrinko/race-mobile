@@ -5,7 +5,25 @@ body {
     padding: 0;
 }
 
-canvas {
+#canvas {
     width: 100%;
     height: 100%;
+}
+
+.left-side {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: blue;
+}
+
+.right-side {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: red;
 }
