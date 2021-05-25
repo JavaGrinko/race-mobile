@@ -1,21 +1,29 @@
 <html>
-    <head>
-        <title>Race mobile</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="bundle.js"></script>
-        <script src="cordova.js"></script>
-    </head>
-    <body>
-        <div id="game-container">
-            <div class="left-side">
-                <div id="left-button"></div>
-                <div id="right-button"></div>
-            </div>
-            <div class="right-side">
-                <div id="move-forward-button"></div>
-                <div id="move-back-button"></div>
-            </div>
-            <canvas id="canvas"></canvas>
+
+<head>
+    <title>Race mobile</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" href="style.css">
+    <script src="bundle.js"></script>
+    <script src="cordova.js"></script>
+</head>
+
+<body>
+    <div id="game-container">
+        <div class="left-side">
+            <div id="left-button"></div>
+            <div id="right-button"></div>
         </div>
-    </body>
+        <div class="right-side">
+            <div id="move-forward-button"></div>
+            <div id="move-back-button"></div>
+        </div>
+    </div>
+</body>
+
 </html>

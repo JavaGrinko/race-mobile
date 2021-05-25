@@ -104,7 +104,7 @@ export default class World {
         let game = document.createElement("canvas");
         game.width = width;
         game.height = height;
-        document.body.appendChild(game);
+        document.getElementById("game-container").appendChild(game);
         return {
             canvas: game.getContext("2d"),
             domElement: game

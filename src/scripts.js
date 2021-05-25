@@ -1,4 +1,5 @@
 import { LEVELS } from "./config/levels";
+import Gui from "./game/gui";
 import World from "./game/world";
 import controls from "./system/controls";
 import DatConfig from "./system/dat.config";
@@ -14,6 +15,7 @@ function deviceReady() {
     }, LEVELS.TRACK);
     world.controls = controls;
     world.start();
+    new Gui(world);
     new DatConfig(world);
     window.world = world;
 
