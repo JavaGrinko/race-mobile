@@ -14,7 +14,7 @@ function deviceReady() {
         height: window.innerHeight * ratio
     }, LEVELS.TRACK);
     world.controls = controls;
-    world.start();
+    // world.start();
     new Gui(world);
     new DatConfig(world);
     window.world = world;

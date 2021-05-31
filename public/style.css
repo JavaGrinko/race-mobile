@@ -68,3 +68,20 @@ body {
     width: 100%;
     height: 100%;
 }
+
+#game-container .stats {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: max-content;
+    display: flex;
+    background-color: chocolate;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.laps {
+    margin-right: 16px;
+}

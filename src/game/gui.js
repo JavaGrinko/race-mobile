@@ -5,9 +5,13 @@ export default class Gui {
         this.world = world;
         $("#move-forward-button").on('touchstart', (event) => this.startMethod(event, "increaseSpeed"));
         $("#move-forward-button").on('touchend', (event) => this.endMethod(event, "increaseSpeed"));
-
         $("#move-back-button").on('touchstart', (event) => this.startMethod(event, "decreaseSpeed"));
         $("#move-back-button").on('touchend', (event) => this.endMethod(event, "decreaseSpeed"));
+        
+        $("#left-button").on('touchstart', (event) => this.startMethod(event, "turnLeft"));
+        $("#left-button").on('touchend', (event) => this.endMethod(event, "turnLeft"));
+        $("#right-button").on('touchstart', (event) => this.startMethod(event, "turnRight"));
+        $("#right-button").on('touchend', (event) => this.endMethod(event, "turnRight"));
     }
 
     startMethod = (event, method) => {
