@@ -6,14 +6,42 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport"
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta http-equiv="Content-Security-Policy" />
     <link rel="stylesheet" href="style.css">
     <script src="bundle.js"></script>
     <script src="cordova.js"></script>
 </head>
 
 <body>
+    <div class="shop" style="display: none;">
+        <div class="shop-bolts">Coins: 10</div>
+        <div class="cross">&#x2715;</div>
+        <div class="viewer">
+            <div class="arrow-left">&#10132;</div>
+            <model-viewer
+                class="model-3d" 
+                src="models/Koenigsegg.glb"
+                auto-rotate 
+                camera-controls
+            >
+            </model-viewer>
+            <div class="arrow-right">&#10132;</div>
+        </div>
+        <div class="buy-button">3000 Б</div>
+    </div>
+    <div id="menu-screen">
+        <div class="stats">
+            <div>Лучший счет: 1</div>
+            <div>Coins: 10</div>
+        </div>
+        <div class="content">
+            Тут Машинка
+        </div>
+        <div class="controls">
+            <div class="button" id="settings-button">Настройки</div>
+            <div class="button" id="shop-button">Магаз</div>
+        </div>
+    </div>
     <div id="game-container">
         <div class="stats">
             <div class="laps">Круги: 1/12</div>
