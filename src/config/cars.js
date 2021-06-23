@@ -4,14 +4,20 @@ export const CARS = {
         width: 53,
         height: 100,
         maxSpeed: 10,
-        acceleration: 0.1
+        acceleration: 0.1,
+        modelSrc: 'models/Koenigsegg.glb',
+        price: 100,
+        name: "Машина для краш-тестов"
     },
     BUGATTI: {
         imageSrc: "images/bugatti.png",
         width: 53,
         height: 100,
         maxSpeed: 8,
-        acceleration: 2
+        acceleration: 2,
+        modelSrc: 'models/old_rusty_car/scene.gltf',
+        price: 200,
+        name: "Бугагатти"
     },
     LADA: {
         imageSrc: "images/lada.png",

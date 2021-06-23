@@ -1,6 +1,5 @@
 #!/bin/bash
  
-npm run build
 cordova telemetry off
 cordova create project --link-to ./www
 cp config.xml project/config.xml

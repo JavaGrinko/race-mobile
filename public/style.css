@@ -140,9 +140,17 @@ body {
     width: 100%;
     margin-top: 20vh;
     background-color: darkcyan;
+}
+
+.model-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.model-name {
+    text-align: center;
+    color: chartreuse;
 }
  
 .shop-bolts {
