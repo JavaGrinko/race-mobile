@@ -21,8 +21,8 @@ body {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    width: 30vh;
-    height: 15vh;
+    width: 50vh;
+    height: 25vh;
     display: flex;
 }
 
@@ -30,8 +30,8 @@ body {
     position: absolute;
     right: 10px;
     bottom: 10px;
-    width: 15vh;
-    height: 30vh;
+    width: 25vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
 }
@@ -105,7 +105,7 @@ body {
     margin: 0 32px 32px 32px;
 }
  
-.stats {
+#menu-screen .stats {
     margin: 32px 0 0 32px;
 }
  

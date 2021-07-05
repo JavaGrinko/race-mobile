@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 import { CARS } from "../config/cars";
 import Camera from "../system/camera";
 import EventBus from "../system/eventBus";
@@ -6,6 +8,7 @@ import HeadCrab from "./headcrab";
 import Road from "./road";
 import Wall from "./wall";
 import Profile from './profile';
+import Player from "./player";
 
 export default class World {
     constructor(options, initLevel) {
@@ -37,8 +40,18 @@ export default class World {
         return car;
     }
 
+    createPlayer(options) {
+        const car = new Player({ ...options, world: this });
+        this.eventBus.subscribe(car);
+        return car;
+    }
+
+    changeStatLaps(current, total) {
+        $("#game-container .laps").text(`Круги: ${current} из ${total}`);
+    }
+
     loadLevel(level) {
-        this.player = this.createCar(CARS[this.profile.activeSkin]);
+        this.player = this.createPlayer(CARS[this.profile.activeSkin]);
         this.level = level;
         const { backgroundSrc, roads, walls, spawn, lapsCount, bots } = level;
         this.background = new Image();
@@ -52,6 +65,7 @@ export default class World {
                     .filter(w => w.name && w.name.includes("checkpoint")).length;
         this.player.lapCounter.reset(checkpointCount, lapsCount);
         this.createBots(bots, spawn, checkpointCount, lapsCount);
+        this.changeStatLaps(0, lapsCount);
         this.createCamera();
     }
 

@@ -15,11 +15,15 @@ export default class LapCounter {
         if (type === EventType.COLLISION && name && this.car.uuid === carId) {
             if (name === "start_line") {
                 this.startLinePassed();
+                this.onStartPassed();
             } else if (name.includes("checkpoint")) {
                 this.checkpointPassed(name);
             }
         }
     }
+
+    onStartPassed() {}
+    onFinished() {}
 
     startLinePassed() {
         console.log(this.times);
@@ -58,11 +62,10 @@ export default class LapCounter {
         let lapTime = Math.round((endTime - startTime ) / 1000);
         console.log("Время круга: " + lapTime + " сек");
         if (this.currentLap + 1 === this.lapsCount) {
-            console.log("Гонка закончена");
+            this.onFinished();
         }
         this.currentCheckpoint = -1;
         this.currentLap++;
         this.start();
-        console.log(this.lapsCount, this.currentLap);
     }
 }

@@ -2,6 +2,7 @@ export default class Profile {
 
     constructor() {
         this.load();
+        this.save();
     }
 
     load = () => {
