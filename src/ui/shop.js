@@ -1,20 +1,20 @@
 import $ from "jquery";
 import { CARS } from "../config/cars";
-import { checkAvailableCar, getProfile, setProfile } from "../game/profile";
 
 export default function Shop(world) {
     let skinNames = Object.keys(CARS);
-    let currentSkin = skinNames[0];
+    let { profile } = world;
+    let currentSkin = profile.activeSkin;
     $(".shop .cross").on('click', () => {
         $(".shop").hide();
     });
     $(".buy-button").on('click', () => {
-        let profile = getProfile();
-        if (checkAvailableCar(currentSkin)) {
-            profile.activeCar = currentSkin;
+        if (profile.checkAvailableSkin(currentSkin)) {
+            if (profile.activeSkin !== currentSkin) {
+                profile.changeActiveSkin(currentSkin);
+            }
         } else {
-            profile.coins -= CARS[currentSkin].price;
-            profile.availableCars.push(currentSkin); 
+            profile.buy(currentSkin, CARS[currentSkin].price); 
         }
         changeModel();
     });
@@ -39,14 +39,24 @@ export default function Shop(world) {
     });
 
     function changeModel() {
-        $(".shop-bolts").text("Coins: " + getProfile().coins);
         let skin = CARS[currentSkin];
         let { name, price, modelSrc } = skin;
         $(".model-3d").attr("src", modelSrc);
-        if (checkAvailableCar(currentSkin)) {
-            $(".buy-button").text("Выбрать");
+        $(".shop-bolts").text("Болты: " + profile.coins);
+        $(".buy-button").removeClass("no-money");
+        if (profile.checkAvailableSkin(currentSkin)) {
+            if (profile.activeSkin === currentSkin) {
+                $(".buy-button").text("Активен"); 
+            } else {
+                $(".buy-button").text("Выбрать"); 
+            }
         } else {
-            $(".buy-button").text(price + " C");
+            if (price > profile.coins) {
+                $(".buy-button").text(price + " C");
+                $(".buy-button").addClass("no-money");
+            } else {
+                $(".buy-button").text(price + " C");
+            }
         }
         $(".model-name").text(name);
     }

@@ -5,6 +5,7 @@ import Car from "./car";
 import HeadCrab from "./headcrab";
 import Road from "./road";
 import Wall from "./wall";
+import Profile from './profile';
 
 export default class World {
     constructor(options, initLevel) {
@@ -17,7 +18,7 @@ export default class World {
         this.background;
         this.level;
         this.camera;
-        this.player = this.createCar(CARS.DEMO_CAR);
+        this.profile = new Profile();
         this.roads = [];
         this.walls = [];
         this.bots = [];
@@ -37,6 +38,7 @@ export default class World {
     }
 
     loadLevel(level) {
+        this.player = this.createCar(CARS[this.profile.activeSkin]);
         this.level = level;
         const { backgroundSrc, roads, walls, spawn, lapsCount, bots } = level;
         this.background = new Image();
@@ -55,6 +57,7 @@ export default class World {
 
     createBots(bots, spawn, checkpointCount, lapsCount) {
         let { x, y, angle } = spawn;
+        this.bots = [];
         bots && bots.forEach((bot, index) => {
             let car = this.createCar(bot);
             car.x = x - Math.ceil(index / 2) * (car.width * 2);
@@ -101,9 +104,11 @@ export default class World {
     }
 
     createCanvas({ width, height }) {
+        document.getElementById("game-canvas")?.remove();
         let game = document.createElement("canvas");
         game.width = width;
         game.height = height;
+        game.id = "game-canvas";
         document.getElementById("game-container").appendChild(game);
         return {
             canvas: game.getContext("2d"),

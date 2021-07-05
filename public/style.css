@@ -223,3 +223,8 @@ body {
     align-items: center;
     background-color: lavender;
 }
+
+.no-money {
+    background-color: grey!important;
+    pointer-events: none;
+}
