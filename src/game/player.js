@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { showEndMenu } from "../ui/end-menu";
 import Car from "./car";
 
 export default class Player extends Car {
@@ -10,8 +11,7 @@ export default class Player extends Car {
             this.world.changeStatLaps(currentLap + 1, total);
         }
         this.lapCounter.onFinished = () => {
-            this.world.stop();
-            $("#menu-screen").show();
+            showEndMenu(5, 8);
         }
     }
 }
